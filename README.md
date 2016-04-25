@@ -15,12 +15,12 @@ persist newly generated key:
 POST /api/v0/keystore/<uuid v4>
 
 {
-  "json": "according to secret storage definition",
+  "keystore": {"description": "according to secret storage definition"},
   "storageToken": "token"
 }
 returns:
 http 201 - created
-http 400 - uuid in json does not match uuid in url
+http 400 - uuid in json does not match uuid in url / no address contained
 http 401 - storageToken not valid
 http 409 - conflict
 ```
@@ -29,6 +29,10 @@ retrieve key:
 ```
 GET /api/v0/keystore/<uuid v4>
 
+returns:
+http 200 - ok
+http 403 - banned
+http 404 - not found
 ```
 
 example:
