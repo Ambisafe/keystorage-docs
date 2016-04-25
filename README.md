@@ -18,8 +18,9 @@ POST /api/v0/keystore/<uuid v4>
 {
   "<according to secret storage definition>"
 }
-
+```
 returns:
+```
 http 201 - created
 http 400 - uuid in json does not match uuid in url / no address contained
 http 401 - storageToken not valid
@@ -29,8 +30,9 @@ http 409 - conflict
 retrieve key:
 ```
 GET /api/v0/keystore/<uuid v4>
-
+```
 returns:
+```
 http 200 - ok
 http 403 - banned
 http 404 - not found
@@ -39,8 +41,9 @@ http 404 - not found
 example:
 ```
 GET /api/v0/keystore/3198bc9c-6672-5ab3-d995-4942343ae5b6
-
+```
 returns:
+```
 http 200
 {
     "crypto" : {
@@ -95,7 +98,7 @@ The audience of the token is always Ambisafe. The subject is which of the servic
 ```
 The token is created as in the [specification](https://jwt.io) and attached under the `Authorization: Bearer <jwt token>` header.
 
-Once the service is delivered, 
+Once the service is delivered, the following call will consume and invalidate the token:
 
 ```
 Header: Authorization: Bearer <jwt token>
@@ -104,8 +107,9 @@ POST https://oauth.ambisafe.co/api/v0/oauth/consume/<jti>
 {
   "jti": "<jit>"
 }
-
+```
 returns:
+```
 http 200 - consumed
 http 404 - not found
 ```
