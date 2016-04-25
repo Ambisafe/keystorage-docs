@@ -93,13 +93,13 @@ The audience of the token is always Ambisafe. The subject is which of the servic
   "typ": "JWT"
 }
 ```
-The token is created as in the [specification](https://jwt.io) and attached under the `Authorization: Bearer <jwt token described in security>` header.
+The token is created as in the [specification](https://jwt.io) and attached under the `Authorization: Bearer <jwt token>` header.
 
 Once the service is delivered, 
 
 ```
-Header: Authorization: Bearer <jwt token described previously>
-POST oauth.ambisafe.co/api/v0/oauth/consume/<jti>
+Header: Authorization: Bearer <jwt token>
+POST https://oauth.ambisafe.co/api/v0/oauth/consume/<jti>
 
 {
   "jti": "<jit>"
