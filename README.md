@@ -18,10 +18,45 @@ POST /api/v0/keystore/<uuid v4>
   "json": "according to secret storage definition",
   "storageToken": "token"
 }
+returns:
+http 201 - created
+http 400 - uuid in json does not match uuid in url
+http 401 - storageToken not valid
+http 409 - conflict
 ```
+
 retrieve key:
 ```
 GET /api/v0/keystore/<uuid v4>
+
+```
+
+example:
+```
+GET /api/v0/keystore/3198bc9c-6672-5ab3-d995-4942343ae5b6
+
+returns:
+http 200
+{
+    "crypto" : {
+        "cipher" : "aes-128-ctr",
+        "cipherparams" : {
+            "iv" : "6087dab2f9fdbbfaddc31a909735c1e6"
+        },
+        "ciphertext" : "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+        "kdf" : "pbkdf2",
+        "kdfparams" : {
+            "c" : 262144,
+            "dklen" : 32,
+            "prf" : "hmac-sha256",
+            "salt" : "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
+        },
+        "mac" : "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
+    },
+    "address" : "0xe6b032b23bc145ed19e23792e2a107d0794fe65a",
+    "id" : "3198bc9c-6672-5ab3-d995-4942343ae5b6",
+    "version" : 3
+}
 ```
 
 ## Billing integration
