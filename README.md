@@ -73,7 +73,7 @@ Tenants are charged for operations using [JOSE](https://datatracker.ietf.org/wg/
 
 1. validate that token valid
 2. execute operation - create dataset
-3. claim JTI as spent
+3. record JTI as consumed
 
 [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) is used to delegate authorization to resources from tenant to users. The following fields should be used to create the payload:
 
@@ -98,7 +98,7 @@ The audience of the token is always Ambisafe. The subject is which of the servic
 ```
 The token is created as in the [specification](https://jwt.io) and attached under the `Authorization: Bearer <jwt token>` header.
 
-Once the service is delivered, the following call will consume and invalidate the token:
+Once the service is delivered, the following call will record the JTI as consumed:
 
 ```
 Header: Authorization: Bearer <jwt token>
