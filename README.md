@@ -12,8 +12,8 @@ simple API to store and retrieve keys.
 
 persist newly generated key:
 ```
+Header: Authorization: Bearer <jwt token described in billing integration and security>
 POST /api/v0/keystore/<uuid v4>
-Header: Authorization: Bearer <jwt token described in security>
 
 {
   "<according to secret storage definition>"
@@ -66,18 +66,13 @@ http 200
 
 ## Billing integration
 
-`storageToken` is used to charge tenant for operations. Following steps necessary:
+Tenants are charged for operations using [JOSE](https://datatracker.ietf.org/wg/jose/charter/). Following steps necessary:
 
 1. validate that token valid
 2. execute operation - create dataset
-3. claim token as spent
+3. claim JTI as spent
 
-
-## Security 
-
-### For POST:
-
-[JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) is used to delegate authentication to resources from tenant to users. The following fields should be used:
+[JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) is used to delegate authorization to resources from tenant to users. The following fields should be used to create the payload:
 
 ```
 {
@@ -88,7 +83,7 @@ http 200
   “exp”: 1426420800,
 }
 ```
-The issuer of the token is always Ambisafe. The subject is the tenant. JWT ID claim provides a unique identifier to be used once in exchange for some service.
+The audience of the token is always Ambisafe. The subject is which of the services is consumed. JWT ID claim provides a unique identifier to be used once in exchange for some service.
 
 [JWS](https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41) is used to sign the JWT with tenant's secret key.
 
@@ -99,6 +94,25 @@ The issuer of the token is always Ambisafe. The subject is the tenant. JWT ID cl
 }
 ```
 The token is created as in the [specification](https://jwt.io) and attached under the `Authorization: Bearer <jwt token described in security>` header.
+
+Once the service is delivered, 
+
+```
+Header: Authorization: Bearer <jwt token described previously>
+POST oauth.ambisafe.co/api/v0/oauth/consume/<jti>
+
+{
+  "jti": "<jit>"
+}
+
+returns:
+http 200 - consumed
+http 404 - not found
+```
+
+
+## Security 
+
 
 ### For GET:
 
