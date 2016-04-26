@@ -71,7 +71,7 @@ http 200
 
 ## Billing Integration
 
-Tenants are charged for CREATE operations using [JOSE](https://datatracker.ietf.org/wg/jose/charter/). Following steps necessary:
+Tenants are charged for CREATE operations through [consumed authorization grants](https://docs.google.com/drawings/d/1rmSLuh5T8pdokWLH7FOzO9In7pxTWI0Vca6NEfLbAUk). Following steps necessary:
 
 1. validate that token valid
 2. execute operation - create dataset
