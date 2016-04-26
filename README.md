@@ -72,50 +72,7 @@ http 200
 
 ## Billing Integration
 
-Tenants are charged for CREATE operations through [consumed authorization grants](https://docs.google.com/drawings/d/1rmSLuh5T8pdokWLH7FOzO9In7pxTWI0Vca6NEfLbAUk). Following steps necessary:
-
-1. validate that token valid
-2. execute operation - create dataset
-3. record JTI as consumed
-
-[JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) is used to delegate authorization to resources from tenant to users. The following fields should be used to create the payload:
-
-```
-{
-  "iss": "tenant",
-  "sub": "storage/faucet/recovery",
-  "jti": "1234",
-  "aud": "ambisafe",
-  “exp”: 1426420800,
-}
-```
-The audience of the token is always Ambisafe. The subject is which of the services is consumed. JWT ID claim provides a unique identifier to be used once in exchange for some service.
-
-[JWS](https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41) is used to sign the JWT with tenant's secret key.
-
-```
-{
-  "alg": "HS256",
-  "typ": "JWT"
-}
-```
-The token is created as in the [specification](https://jwt.io) and attached under the `Authorization: Bearer <jwt token>` header.
-
-Once the service is delivered, the following call will record the JTI as consumed:
-
-```
-Header: Authorization: Bearer <jwt token>
-POST https://oauth.ambisafe.co/api/v0/oauth/consume/<jti>
-
-{
-  "jti": "<jit>"
-}
-```
-returns:
-```
-http 200 - consumed
-http 404 - not found
-```
+Tenants are charged for CREATE operations through [consumed authorization grants](https://github.com/Ambisafe/security_delegation/blob/master/README.md). 
 
 
 ## Security 
