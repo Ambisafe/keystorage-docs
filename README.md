@@ -78,7 +78,7 @@ The generated SDK depends on third-party libraries. Include all of the scripts i
 To initialize the most basic form of the SDK:
 
 ```
-var storageClient = new storageClientFactory.newClient();
+var storageClient = storageClientFactory.newClient();
 ```
 
 Calls to an API take the form outlined below. Each API call returns a promise, that invokes either a success and failure callback
@@ -101,7 +101,7 @@ var wallet = {
         "mac" : "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
     },
     "id": "88a23fc8-09fa-4cd5-a3a4-0d4f3a496602",
-    "address" : "3198bc9c-6672-5ab3-d995-4942343ae5b6",
+    "address" : "0xe6b032b23bc145ed19e23792e2a107d0794fe65a",
     "version" : 3
 };
 
