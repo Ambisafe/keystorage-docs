@@ -11,6 +11,8 @@ simple API to store and retrieve keys.
 
 ## Usage
 
+Production Endpoint: https://j88e4em4zc.execute-api.eu-central-1.amazonaws.com/prod
+
 ### Persist newly generated key:
 ```
 Header: Authorization: Bearer <jwt token described in billing integration and security>
