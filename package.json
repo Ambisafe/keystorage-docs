@@ -1,0 +1,27 @@
+{
+  "name": "keystorage-lib",
+  "version": "1.0.0",
+  "description": "a simple service to store encrypted ethereum keys",
+  "keywords": [
+    "ethereum",
+    "keychain"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ambisafe/keystorage-docs.git"
+  },
+  "author": "Johann Barbie <johannbarbie@me.com> (http://johba.de/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ambisafe/keystorage-docs/issues"
+  },
+  "homepage": "https://github.com/Ambisafe/keystorage-docs#readme",
+  "dependencies": {
+    "superagent": "^1.8.3",
+    "superagent-jsonapify": "^1.4.1"
+  }
+}
