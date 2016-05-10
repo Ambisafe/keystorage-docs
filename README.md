@@ -13,6 +13,41 @@ simple API to store and retrieve keys.
 
 Production Endpoint: https://j88e4em4zc.execute-api.eu-central-1.amazonaws.com/prod
 
+Calls to an API take the form outlined below. Each API call returns a promise, that invokes either a success and failure callback
+
+```
+var wallet = {
+    "crypto" : {
+        "cipher" : "aes-128-ctr",
+        "cipherparams" : {
+            "iv" : "6087dab2f9fdbbfaddc31a909735c1e6"
+        },
+        "ciphertext" : "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+        "kdf" : "pbkdf2",
+        "kdfparams" : {
+            "c" : 262144,
+            "dklen" : 32,
+            "prf" : "hmac-sha256",
+            "salt" : "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
+        },
+        "mac" : "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
+    },
+    "id": "88a23fc8-09fa-4cd5-a3a4-0d4f3a496602",
+    "address" : "0xe6b032b23bc145ed19e23792e2a107d0794fe65a",
+    "version" : 3
+};
+
+var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZTU5NmFlOC00NjVjLTRkMWEtOWE4MC1mOTJlY2QyNDE2MzUiLCJzdWIiOiJzdG9yYWdlIiwianRpIjoiMTIzNCIsImF1ZCI6ImFtYmlzYWZlIiwiZXhwIjoxNDYxNzkxMDI2MDQyfQ.IJdbUMCN7O8LOHNY0H19pGFMmw3GBaDtybh-3BllM_g';
+
+ambi.store(wallet, token)
+    .then(function(result){
+        //This is where you would put a success callback
+    }).catch( function(result){
+        //This is where you would put an error callback
+    });
+```
+
+
 ### Persist newly generated key:
 ```
 Header: Authorization: Bearer <jwt token described in billing integration and security>
@@ -57,60 +92,3 @@ Tenants are charged for CREATE operations through [consumed authorization grants
 Rate-limiting used to prevent brute-force attacks on GET operation. Any IP that produced 3 x 404 should be banned for 10 minutes.
 
 
-# client SDK
-
-The generated SDK depends on third-party libraries. Include all of the scripts in your webpage
-
-    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
-    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
-    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
-    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
-    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
-    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
-    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
-    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
-    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
-    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
-    <script type="text/javascript" src="apigClient.js"></script>
-
-# Use the SDK in your project
-
-To initialize the most basic form of the SDK:
-
-```
-var storageClient = storageClientFactory.newClient();
-```
-
-Calls to an API take the form outlined below. Each API call returns a promise, that invokes either a success and failure callback
-
-```
-var wallet = {
-    "crypto" : {
-        "cipher" : "aes-128-ctr",
-        "cipherparams" : {
-            "iv" : "6087dab2f9fdbbfaddc31a909735c1e6"
-        },
-        "ciphertext" : "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-        "kdf" : "pbkdf2",
-        "kdfparams" : {
-            "c" : 262144,
-            "dklen" : 32,
-            "prf" : "hmac-sha256",
-            "salt" : "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
-        },
-        "mac" : "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
-    },
-    "id": "88a23fc8-09fa-4cd5-a3a4-0d4f3a496602",
-    "address" : "0xe6b032b23bc145ed19e23792e2a107d0794fe65a",
-    "version" : 3
-};
-
-var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZTU5NmFlOC00NjVjLTRkMWEtOWE4MC1mOTJlY2QyNDE2MzUiLCJzdWIiOiJzdG9yYWdlIiwianRpIjoiMTIzNCIsImF1ZCI6ImFtYmlzYWZlIiwiZXhwIjoxNDYxNzkxMDI2MDQyfQ.IJdbUMCN7O8LOHNY0H19pGFMmw3GBaDtybh-3BllM_g';
-
-storageClient.store(wallet, token)
-    .then(function(result){
-        //This is where you would put a success callback
-    }).catch( function(result){
-        //This is where you would put an error callback
-    });
-```
