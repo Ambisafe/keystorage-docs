@@ -1,7 +1,7 @@
 {
   "name": "keystorage-lib",
   "version": "1.0.0",
-  "description": "a simple service to store encrypted ethereum keys",
+  "description": "A simple service to store encrypted ethereum keys.",
   "keywords": [
     "ethereum",
     "keychain"
