@@ -31,7 +31,7 @@ simple API to store and retrieve keys.
 
 ```
 
-Example output of `res.body`:
+Example output of `result.body`:
 
 ```JSON
 {
@@ -60,7 +60,7 @@ Example output of `res.body`:
 
 Each API call returns a promise, that invokes either a success and failure callback.
 
-```
+```javascript
   var lib = require('keystorage-lib');
 
   var wallet = {
