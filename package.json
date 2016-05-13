@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/Ambisafe/keystorage-docs#readme",
   "dependencies": {
+    "es6-promise": "^3.2.1",
     "superagent": "^1.8.3",
-    "superagent-jsonapify": "^1.4.1"
+    "superagent-jsonapify": "^1.4.1",
+    "superagent-promise-plugin": "^3.2.0"
   }
 }
