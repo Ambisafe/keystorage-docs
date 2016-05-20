@@ -13,27 +13,26 @@ simple API to store and retrieve keys.
 ### Installation instructions
 
 ```
-  npm install keystorage-lib
+npm install keystorage-lib
 ```
 
 ### Reading wallet from storage
 
 
-```javascript
-  var lib = require('keystorage-lib');
-  var walletUuid = '88a23fc8-09fa-4cd5-a3a4-0d4f3a496602';
-  lib.get(walletUuid)
-    .then(function(result){
-        //This is where you would put a success callback
-    }).catch( function(result){
-        //This is where you would put an error callback
-    });
-
+```js
+var lib = require('keystorage-lib');
+var walletUuid = '88a23fc8-09fa-4cd5-a3a4-0d4f3a496602';
+lib.get(walletUuid)
+  .then(function(result){
+      //This is where you would put a success callback
+  }).catch(function(result){
+      //This is where you would put an error callback
+  });
 ```
 
 Example output of `res.body`:
 
-```JSON
+```js
 {
   address: '0xe6b032b23bc145ed19e23792e2a107d0794fe65a',
   id: '88a23fc8-09fa-4cd5-a3a4-0d4f3a496602',
@@ -60,36 +59,36 @@ Example output of `res.body`:
 
 Each API call returns a promise, that invokes either a success and failure callback.
 
-```
-  var lib = require('keystorage-lib');
+```js
+var lib = require('keystorage-lib');
 
-  var wallet = {
-    "crypto" : {
-      "cipher" : "aes-128-ctr",
-      "cipherparams" : {
-        "iv" : "6087dab2f9fdbbfaddc31a909735c1e6"
-      },
-      "ciphertext" : "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-      "kdf" : "pbkdf2",
-      "kdfparams" : {
-        "c" : 262144,
-        "dklen" : 32,
-        "prf" : "hmac-sha256",
-        "salt" : "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
-      },
-      "mac" : "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
+var wallet = {
+  "crypto" : {
+    "cipher" : "aes-128-ctr",
+    "cipherparams" : {
+      "iv" : "6087dab2f9fdbbfaddc31a909735c1e6"
     },
-    "id": "88a23fc8-09fa-4cd5-a3a4-0d4f3a496602",
-    "address" : "0xe6b032b23bc145ed19e23792e2a107d0794fe65a",
-    "version" : 3
-  };
+    "ciphertext" : "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+    "kdf" : "pbkdf2",
+    "kdfparams" : {
+      "c" : 262144,
+      "dklen" : 32,
+      "prf" : "hmac-sha256",
+      "salt" : "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
+    },
+    "mac" : "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
+  },
+  "id": "88a23fc8-09fa-4cd5-a3a4-0d4f3a496602",
+  "address" : "0xe6b032b23bc145ed19e23792e2a107d0794fe65a",
+  "version" : 3
+};
 
-  var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZTU5NmFlOC00NjVjLTRkMWEtOWE4MC1mOTJlY2QyNDE2MzUiLCJzdWIiOiJzdG9yYWdlIiwianRpIjoiMTIzNCIsImF1ZCI6ImFtYmlzYWZlIiwiZXhwIjoxNDYxNzkxMDI2MDQyfQ.IJdbUMCN7O8LOHNY0H19pGFMmw3GBaDtybh-3BllM_g';
+var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZTU5NmFlOC00NjVjLTRkMWEtOWE4MC1mOTJlY2QyNDE2MzUiLCJzdWIiOiJzdG9yYWdlIiwianRpIjoiMTIzNCIsImF1ZCI6ImFtYmlzYWZlIiwiZXhwIjoxNDYxNzkxMDI2MDQyfQ.IJdbUMCN7O8LOHNY0H19pGFMmw3GBaDtybh-3BllM_g';
 
-  lib.store(wallet, token)
-    .then(function(result){
-        //This is where you would put a success callback
-    }).catch( function(result){
-        //This is where you would put an error callback
-    });
+lib.store(wallet, token)
+  .then(function(result){
+      //This is where you would put a success callback
+  }).catch(function(result){
+      //This is where you would put an error callback
+  });
 ```
